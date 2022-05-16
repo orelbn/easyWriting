@@ -1,0 +1,53 @@
+{
+  "name": "easywriting",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "predeploy": "rm -rf dist && parcel build ./*.html --public-url",
+    "deploy": "gh-pages -d dist"
+
+  },
+  "keywords": [],
+  "author": "Orel Ben Neriah",
+  "license": "ISC",
+  "devDependencies": {
+    "@headlessui/react": "^1.6.1",
+    "@heroicons/react": "^1.0.6",
+    "@tailwindcss/forms": "^0.5.1",
+    "autoprefixer": "^10.4.7",
+    "buffer": "^6.0.3",
+    "cssnano": "^5.1.7",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
+    "gh-pages": "^4.0.0",
+    "parcel": "^2.5.0",
+    "postcss": "^8.4.13",
+    "postcss-import": "^14.1.0",
+    "prettier": "^2.6.2",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.0.24"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cross-env": "^7.0.3",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage": "https://orelbn.github.io/easyWriting/"
+}
