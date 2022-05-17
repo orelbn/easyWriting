@@ -1,23 +1,35 @@
 import { useState, useEffect } from "react";
 import { generateResponse } from "../scripts/fetchOpenAi";
+import getSavedResults from "../scripts/getSavedResults";
 import Result from "./Result";
 
 const MainPage = () => {
   const [prompt, setPrompt] = useState();
-  const [results, setResults] = useState([]);
-  const [submit, setSubmit] = useState([0]);
+  const [savedResults, setSavedResults] = useState(getSavedResults());
+  const [results, setResults] = useState(savedResults);
+  const [change, setChange] = useState([0]);
 
   const handleClick = () => {
     let input = document.getElementById("textarea");
     if (input.value) {
       setPrompt(input.value);
-      setSubmit(!submit);
+      setChange(!change);
     }
   };
 
+  const handleClear = () => {
+    localStorage.clear();
+    setResults([]);
+    setChange(!submit);
+  };
+
   useEffect(() => {
-    handleResponse();
-  }, [submit]);
+    handleResponse().catch((e) => console.log(e));
+  }, [change]);
+
+  useEffect(() => {
+    localStorage.setItem("results", JSON.stringify(results));
+  }, [results]);
 
   const handleResponse = async () => {
     if (prompt) {
@@ -59,6 +71,14 @@ const MainPage = () => {
             response={result.response}
           />
         ))}
+        {results.length > 0 && (
+          <button
+            onClick={handleClear}
+            className="bg-blue-800 self-center min-w-fit max-w-xs w-1/5 text-white font-bold py-2 px-4 rounded"
+          >
+            Clear Results
+          </button>
+        )}
       </section>
     </div>
   );
