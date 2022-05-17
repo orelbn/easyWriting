@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import MainPage from "./components/MainPage.js";
+import MainPage from "./components/MainPage";
 
 const App = () => {
   return (
@@ -10,5 +10,5 @@ const App = () => {
   );
 };
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(<App />);

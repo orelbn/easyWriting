@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FunctionComponent, useRef } from "react";
 import { generateResponse } from "../scripts/fetchOpenAi";
 import getSavedResults from "../scripts/getSavedResults";
 import Result from "./Result";
 
-const MainPage = () => {
-  const [prompt, setPrompt] = useState();
-  const [savedResults] = useState(getSavedResults());
-  const [results, setResults] = useState(savedResults);
-  const [change, setChange] = useState([0]);
+interface Results {
+  prompt: string;
+  response: string;
+}
+
+const MainPage: FunctionComponent = () => {
+  const [prompt, setPrompt] = useState<string | null>();
+  const [results, setResults] = useState<Array<Results>>(getSavedResults());
   const [engine, setEngine] = useState("text-curie-001");
   const Engines = [
     "text-curie-001",
@@ -16,23 +19,25 @@ const MainPage = () => {
     "text-ada-001",
   ];
 
+  // request is utilized as a toggle to trigger request
+  const [request, setRequest] = useState(false);
+
   const handleClick = () => {
-    let input = document.getElementById("textarea");
+    const input = document.getElementById("textarea") as HTMLTextAreaElement;
     if (input.value) {
       setPrompt(input.value);
-      setChange(!change);
+      setRequest(!request);
     }
   };
 
   const handleClear = () => {
     localStorage.clear();
     setResults([]);
-    setChange(!submit);
   };
 
   useEffect(() => {
     handleResponse().catch((e) => console.log(e));
-  }, [change]);
+  }, [request]);
 
   useEffect(() => {
     localStorage.setItem("results", JSON.stringify(results));
@@ -41,7 +46,7 @@ const MainPage = () => {
   const handleResponse = async () => {
     if (prompt) {
       // const response = await generateResponse(prompt, engine);
-      // console.log(response);
+      // console.log(response.text);
       setResults(
         [{ prompt: prompt, response: prompt + ", true!" }].concat(results)
       );
@@ -56,9 +61,8 @@ const MainPage = () => {
           Enter Prompt
         </label>
         <textarea
-          maxLength="1024"
+          maxLength={1024}
           className=" resize-none overflow-auto mb-1 sm:h-72 lg:h-96 rounded-lg"
-          type="text"
           placeholder="Enter up to 1024 characters!"
           id="textarea"
         ></textarea>

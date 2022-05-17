@@ -1,4 +1,9 @@
-const Result = ({ prompt, response }) => {
+import { FunctionComponent } from "react";
+
+const Result: FunctionComponent<{ prompt: string; response: string }> = ({
+  prompt,
+  response,
+}) => {
   return (
     <div className="p-7 mb-7 box-content shadow-lg rounded-md bg-gray-100">
       <div className="flex flex-col xsm:flex-row">

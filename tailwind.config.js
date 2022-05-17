@@ -1,6 +1,6 @@
 module.exports = {
   mode: "jit",
-  content: ["./src/**/*.html", "./src/**/*.js"],
+  content: ["./src/**/*.html", "./src/**/*.tsx"],
   theme: {
     screens: {
       xsm: "564px",
