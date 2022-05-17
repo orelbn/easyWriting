@@ -9,8 +9,8 @@ export const generateResponse = async (prompt: string, engine: string) => {
     temperature: 0.5,
     max_tokens: 1024,
     top_p: 1.0,
-    frequency_penalty: 0.0,
-    presence_penalty: 0.0,
+    frequency_penalty: 0.3,
+    presence_penalty: 0.3,
   };
 
   const url = `https://api.openai.com/v1/engines/${engine}/completions`;

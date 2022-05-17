@@ -1,5 +1,6 @@
 import { useState, useEffect, FunctionComponent, useRef } from "react";
 import { generateResponse } from "../scripts/fetchOpenAi";
+import { OpenAIAPIResponse } from "../types/APIResponseTypes";
 import getSavedResults from "../scripts/getSavedResults";
 import Result from "./Result";
 
@@ -45,11 +46,13 @@ const MainPage: FunctionComponent = () => {
 
   const handleResponse = async () => {
     if (prompt) {
-      // const response = await generateResponse(prompt, engine);
-      // console.log(response.text);
-      setResults(
-        [{ prompt: prompt, response: prompt + ", true!" }].concat(results)
-      );
+      const res = (await generateResponse(
+        prompt,
+        engine
+      )) as unknown as OpenAIAPIResponse;
+      console.log(res);
+      const response = res.data.choices[0].text;
+      setResults([{ prompt: prompt, response: response }].concat(results));
     }
   };
 
