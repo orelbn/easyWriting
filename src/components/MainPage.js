@@ -5,9 +5,16 @@ import Result from "./Result";
 
 const MainPage = () => {
   const [prompt, setPrompt] = useState();
-  const [savedResults, setSavedResults] = useState(getSavedResults());
+  const [savedResults] = useState(getSavedResults());
   const [results, setResults] = useState(savedResults);
   const [change, setChange] = useState([0]);
+  const [engine, setEngine] = useState("text-curie-001");
+  const Engines = [
+    "text-curie-001",
+    "text-davinci-002",
+    "text-babbage-001",
+    "text-ada-001",
+  ];
 
   const handleClick = () => {
     let input = document.getElementById("textarea");
@@ -33,7 +40,7 @@ const MainPage = () => {
 
   const handleResponse = async () => {
     if (prompt) {
-      // const response = await generateResponse(prompt);
+      // const response = await generateResponse(prompt, engine);
       // console.log(response);
       setResults(
         [{ prompt: prompt, response: prompt + ", true!" }].concat(results)
@@ -50,17 +57,39 @@ const MainPage = () => {
         </label>
         <textarea
           maxLength="1024"
-          className=" resize-none overflow-auto mb-1 sm:h-72 lg:h-96 xl:h-128 rounded-lg"
+          className=" resize-none overflow-auto mb-1 sm:h-72 lg:h-96 rounded-lg"
           type="text"
           placeholder="Enter up to 1024 characters!"
           id="textarea"
         ></textarea>
-        <button
-          onClick={handleClick}
-          className="bg-blue-800 self-end min-w-fit max-w-xs w-1/5 text-white font-bold py-2 px-4 rounded"
-        >
-          Submit
-        </button>
+        <div className="flex flex-col xsm:flex-row justify-between">
+          <label htmlFor="Engine">
+            Pick Engine
+            <select
+              id="engine"
+              value={engine}
+              onChange={(e) => {
+                setEngine(e.target.value);
+              }}
+              onBlur={(e) => {
+                setEngine(e.target.value);
+              }}
+              className="w-full bg-slate-100 xsm:w-60 mb-5 block"
+            >
+              {Engines.map((engine) => (
+                <option key={engine} value={engine}>
+                  {engine}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button
+            onClick={handleClick}
+            className="bg-blue-800 min-w-fit max-w-xs self-center h-1/2 w-1/5 text-white font-bold py-2 px-4 rounded"
+          >
+            Submit
+          </button>
+        </div>
       </section>
       <h2 className="text-2xl text-black font-bold mb-7">Responses</h2>
       <section className="flex flex-col">
