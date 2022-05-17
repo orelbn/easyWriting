@@ -5,17 +5,19 @@ import Result from "./Result";
 const MainPage = () => {
   const [prompt, setPrompt] = useState();
   const [results, setResults] = useState([]);
+  const [submit, setSubmit] = useState([0]);
 
   const handleClick = () => {
     let input = document.getElementById("textarea");
     if (input.value) {
       setPrompt(input.value);
+      setSubmit(!submit);
     }
   };
 
   useEffect(() => {
     handleResponse();
-  }, [prompt]);
+  }, [submit]);
 
   const handleResponse = async () => {
     if (prompt) {

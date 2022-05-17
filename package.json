@@ -6,7 +6,7 @@
     "dev": "parcel src/index.html",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx}\"",
-    "build": "cross-env NODE_ENV=production parcel build ./src/index.html --public-url https://orelbn.github.io/easyWriting/",
+    "build": "rm -rf dist .parcel-cache && cross-env NODE_ENV=production parcel build ./src/index.html --public-url https://orelbn.github.io/easyWriting/",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
