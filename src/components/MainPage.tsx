@@ -59,7 +59,7 @@ const MainPage: FunctionComponent = () => {
           {
             prompt: "If your seeing this the API key has been revoked",
             response:
-              "Please email me at contactorelbn@gmail.com and I can get working shortly!",
+              "The application has been migrated to https://orelbn.github.io/FrontEndDevelperInternChallenge/.",
           },
         ]);
       }
