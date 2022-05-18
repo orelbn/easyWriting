@@ -57,8 +57,9 @@ const MainPage: FunctionComponent = () => {
       } else {
         setResults([
           {
-            prompt: "If your seeing this the API key has been revoked",
-            response: "Please contact me at contactorelbn@gmail.com",
+            prompt: "If your seeing this there is an issue with your API key",
+            response:
+              "Please generate a new API key and ensure you proprely set up a .env file! For instructions go to https://github.com/orelbn/easyWriting",
           },
         ]);
       }

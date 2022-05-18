@@ -1,15 +1,12 @@
 {
   "name": "easywriting",
   "version": "1.0.0",
-  "description": "",
+  "description": "Utilizes the power of AI to generate responses given a prompt",
   "scripts": {
     "dev": "parcel src/index.html",
     "format": "prettier --write \"src/**/*.{js,jsx, ts, tsx}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx, ts, tsx}\"",
-    "build": "rm -rf dist .parcel-cache && cross-env NODE_ENV=production parcel build ./src/index.html --public-url https://orelbn.github.io/easyWriting/",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet"
   },
   "keywords": [],
   "author": "Orel Ben Neriah",
@@ -42,8 +39,6 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "cross-env": "^7.0.3",
-    "gh-pages": "^4.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
@@ -58,6 +53,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "homepage": "https://orelbn.github.io/easyWriting/"
+  }
 }
