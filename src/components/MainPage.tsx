@@ -1,4 +1,4 @@
-import { useState, useEffect, FunctionComponent, useRef } from "react";
+import { useState, useEffect, FunctionComponent } from "react";
 import { generateResponse } from "../scripts/fetchOpenAi";
 import { OpenAIAPIResponse } from "../types/APIResponseTypes";
 import getSavedResults from "../scripts/getSavedResults";
@@ -38,6 +38,7 @@ const MainPage: FunctionComponent = () => {
 
   useEffect(() => {
     handleResponse().catch((e) => console.log(e));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [request]);
 
   useEffect(() => {
@@ -50,9 +51,18 @@ const MainPage: FunctionComponent = () => {
         prompt,
         engine
       )) as unknown as OpenAIAPIResponse;
-      console.log(res);
-      const response = res.data.choices[0].text;
-      setResults([{ prompt: prompt, response: response }].concat(results));
+      if (res) {
+        const response = res.data.choices[0].text;
+        setResults([{ prompt: prompt, response: response }].concat(results));
+      } else {
+        setResults([
+          {
+            prompt: "If your seeing this the API key has been revoked",
+            response:
+              "Please email me at contactorelbn@gmail.com and I can get working shortly!",
+          },
+        ]);
+      }
     }
   };
 

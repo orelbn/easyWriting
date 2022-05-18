@@ -1,6 +1,4 @@
 import axios from "axios";
-import { OpenAIAPIResponse } from "../types/APIResponseTypes";
-
 const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY as string;
 
 export const generateResponse = async (prompt: string, engine: string) => {
@@ -27,6 +25,10 @@ export const generateResponse = async (prompt: string, engine: string) => {
       return response;
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error.response.status);
+      console.log(error.response.data.error);
+      if (error.response.status == 401) {
+        return null;
+      }
     });
 };
