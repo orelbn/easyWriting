@@ -5,7 +5,7 @@ const Result: FunctionComponent<{ prompt: string; response: string }> = ({
   response,
 }) => {
   return (
-    <li className="p-7 mb-7 box-content shadow-lg rounded-md bg-gray-100">
+    <li className="p-7 mb-7 box-content animate-fadeIn-response shadow-lg rounded-md bg-gray-100">
       <div className="flex flex-col xsm:flex-row">
         <div className="w-1/4">
           <h3 className="text-l text-black font-bold">Prompt: </h3>
