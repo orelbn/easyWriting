@@ -3,6 +3,7 @@ import { generateResponse } from "../scripts/fetchOpenAi";
 import { OpenAIAPIResponse } from "../types/APIResponseTypes";
 import getSavedResults from "../scripts/getSavedResults";
 import Result from "./Result";
+import Spinner from "./Spinner";
 
 interface Results {
   prompt: string;
@@ -12,6 +13,7 @@ interface Results {
 const MainPage: FunctionComponent = () => {
   const [prompt, setPrompt] = useState<string | null>();
   const [results, setResults] = useState<Array<Results>>(getSavedResults());
+  const [processing, setProcessing] = useState(false);
   const [engine, setEngine] = useState("text-curie-001");
   const Engines = [
     "text-curie-001",
@@ -26,6 +28,7 @@ const MainPage: FunctionComponent = () => {
   const handleClick = () => {
     const input = document.getElementById("textarea") as HTMLTextAreaElement;
     if (input.value) {
+      setProcessing(true);
       setPrompt(input.value);
       setRequest(!request);
     }
@@ -63,11 +66,12 @@ const MainPage: FunctionComponent = () => {
           },
         ]);
       }
+      setProcessing(false);
     }
   };
 
   return (
-    <div className="mx-auto w-2/3 p-5 mt-10 mb-10 font-sans rounded-xl shadow-lg bg-green-300">
+    <div className="mx-auto w-2/3 p-5 mt-10 mb-10 font-sans rounded-md shadow-lg bg-slate-200">
       <h1 className="text-3xl text-black font-bold mb-2">Fun with AI</h1>
       <section className="flex flex-col mb-6">
         <label htmlFor="Entering Promopt" className="text-black  font-medium">
@@ -102,13 +106,19 @@ const MainPage: FunctionComponent = () => {
           </label>
           <button
             onClick={handleClick}
-            className="bg-blue-800 min-w-fit max-w-xs self-center h-1/2 w-1/5 text-white font-bold py-2 px-4 rounded"
+            type="submit"
+            className={`${
+              processing ? "bg-indigo-600" : "bg-blue-800"
+            } min-w-fit max-w-xs self-center h-1/2 w-1/5 text-white font-bold py-2 px-4 rounded`}
           >
-            Submit
+            {processing === true && <Spinner />}
+            {processing ? "Processing..." : "Submit"}
           </button>
         </div>
       </section>
-      <h2 className="text-2xl text-black font-bold mb-7">Responses</h2>
+      {results.length > 0 && (
+        <h2 className="text-2xl text-black font-bold mb-7">Responses</h2>
+      )}
       <section className="flex flex-col">
         <ul>
           {results.map((result, index) => (
