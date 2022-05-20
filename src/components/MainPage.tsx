@@ -57,7 +57,7 @@ const MainPage: FunctionComponent = () => {
       } else {
         setResults([
           {
-            prompt: "If your seeing this there is an issue with your API key",
+            prompt: "If your seeing this, there is an issue with your API key",
             response:
               "Please generate a new API key and ensure you proprely set up a .env file! For instructions go to https://github.com/orelbn/easyWriting",
           },
@@ -110,13 +110,15 @@ const MainPage: FunctionComponent = () => {
       </section>
       <h2 className="text-2xl text-black font-bold mb-7">Responses</h2>
       <section className="flex flex-col">
-        {results.map((result, index) => (
-          <Result
-            key={index}
-            prompt={result.prompt}
-            response={result.response}
-          />
-        ))}
+        <ul>
+          {results.map((result, index) => (
+            <Result
+              key={results.length - index}
+              prompt={result.prompt}
+              response={result.response}
+            />
+          ))}
+        </ul>
         {results.length > 0 && (
           <button
             onClick={handleClear}
