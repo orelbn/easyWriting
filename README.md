@@ -24,7 +24,7 @@ Auto generate text based on the given prompt using _AI_ technology!
 
 ### Demo
 
-![](easyWriting.demo.gif)
+![](easyWriting-demo.gif)
 
 ## Running application locally
 
