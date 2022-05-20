@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "Orel Ben Neriah",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@headlessui/react": "^1.6.1",
     "@heroicons/react": "^1.0.6",
