@@ -83,6 +83,6 @@ Follow the following instructions to run the application locally.
 
 - Future troublshooting updates will be added below, feel free to submit an issue.
 
-## lighthouse preformance report
+## Lighthouse preformance report
 
 ![preformance report](lighthouse-report.svg)
