@@ -24,7 +24,7 @@ Auto generate text based on the given prompt using _AI_ technology!
 
 ### Demo
 
-![](easyWriting.demo.gif)
+![easyWriting demo](easyWriting-demo.gif)
 
 ## Running application locally
 
@@ -82,3 +82,7 @@ Follow the following instructions to run the application locally.
   `npm i -D parcel`
 
 - Future troublshooting updates will be added below, feel free to submit an issue.
+
+## lighthouse preformance report
+
+![preformance report](lighthouse-report.svg)
