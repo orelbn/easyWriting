@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 
-const Result: FunctionComponent<{ prompt: string; response: string }> = ({
+const Response: FunctionComponent<{ prompt: string; response: string }> = ({
   prompt,
   response,
 }) => {
@@ -27,4 +27,4 @@ const Result: FunctionComponent<{ prompt: string; response: string }> = ({
   );
 };
 
-export default Result;
+export default Response;
