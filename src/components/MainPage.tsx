@@ -9,10 +9,14 @@ interface IResult {
 }
 
 const MainPage: FunctionComponent = () => {
-  const [results, setResults] = useState<Array<IResult>>(getSavedResults());
+  const [results, setResults] = useState<Array<IResult>>(() =>
+    getSavedResults()
+  );
 
   const handleResults = (prompt: string, response: string) => {
-    setResults([{ prompt: prompt, response: response }].concat(results));
+    setResults((prevResults) =>
+      [{ prompt: prompt, response: response }].concat(prevResults)
+    );
   };
 
   const clearResults = () => {
