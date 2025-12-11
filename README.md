@@ -2,6 +2,24 @@
 
 Auto generate text based on the given prompt using _AI_ technology!
 
+## Project status
+
+This is a demo project originally built in 2022.
+
+Dependencies were updated as of December 2025 to reduce exposure to critical bugs and security issues.
+
+It may not work as-is today without updates, mainly because the OpenAI API surface (models/endpoints) has changed since then and browser-to-OpenAI requests are often blocked by CORS.
+
+## Important
+
+Local development only.
+
+This project calls OpenAI directly from the browser, which means your API key is exposed to anyone who can load the site. Do NOT deploy this app publicly.
+
+### Recommendation
+
+If you want to make this project usable again, move the OpenAI call to a small server (local-only is fine) and have the React app call your server instead. This keeps your API key off the client and avoids browser CORS limitations.
+
 ## Tech Stack
 
 ### Main technologies
@@ -12,7 +30,11 @@ Auto generate text based on the given prompt using _AI_ technology!
 
 ### Build
 
-- parcel
+- Vite
+
+### Package manager
+
+- Bun
 
 ### Formatting
 
@@ -20,7 +42,7 @@ Auto generate text based on the given prompt using _AI_ technology!
 
 ### API
 
-- OpenAI GPT-3
+- OpenAI (client-side)
 
 ### Demo
 
@@ -44,44 +66,42 @@ Follow the following instructions to run the application locally.
     `cd easyWriting`
 
     **Make sure you have an updated version of npm and node installed.**
-
     - Updating npm: https://docs.npmjs.com/try-the-latest-stable-version-of-npm
 
-3.  Run:
+3.  Install dependencies:
 
-    `npm i`
+    `bun install`
 
-4.  Create a .env file in your root directory
+4.  Create a local env file (do not commit this):
 
-    - On linux (I believe this works for mac OS as well):
+    `cp .env.example .env.local`
 
-    `touch .env`
+5.  Edit `.env.local` and set your key:
 
-    - On windows:
+    `VITE_OPENAI_API_KEY="your api key"`
 
-    `nul > .env`
+6.  Start the dev server:
 
-5.  Go over to your favourite code editor and update the .env file with your API key.
+    `bun run dev`
 
-    `REACT_APP_API_KEY = "your API key"`
+## Build (optional)
 
-6.  Deploy the application locally by running:
-
-    `npm run dev`
+- `bun run build`
+- `bun run preview`
 
 7.  Press on the local host link.
-
-    - ex. Server running at http://localhost:1234
+    - ex. http://localhost:5173
 
 8.  Enjoy!
 
 ### Trouble Shooting:
 
-- If you get an error message stating that parcel is not identified:
+- If the app says your key is missing, confirm `.env.local` contains `VITE_OPENAI_API_KEY` and restart `bun run dev`.
+- If OpenAI requests fail even with a key, the API endpoints/models in this demo may be outdated, and you may need to migrate to a server-side request.
 
-  `npm i -D parcel`
+## Safety banner
 
-- Future troublshooting updates will be added below, feel free to submit an issue.
+The app renders a warning banner at the top of the page reminding you this is local-only because it exposes an API key client-side.
 
 ## Lighthouse preformance report
 
